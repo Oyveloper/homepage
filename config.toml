@@ -1,0 +1,30 @@
+baseURL = 'https://oyvindmonsen.no'
+languageCode = 'en-us'
+title = 'Øyvind Monsen'
+theme = "m10c"
+
+[params]
+author = "Øyvind Monsen"
+description = "Computer Science student @ NTNU Trondheim with a passion for AI, computer vision and software engineering in general. I do everything from graphics, frontend and backend"
+avatar = "profile.jpg"
+menu_item_separator = "|"
+
+[[params.social]]
+icon = "github"
+name = "Github"
+url = "https://github.com/Oyveloper"
+
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+
+[[menu.main]]
+identifier = "posts"
+name = "Posts"
+url = "/posts/"
+
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
