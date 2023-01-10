@@ -14,6 +14,11 @@ icon = "github"
 name = "Github"
 url = "https://github.com/Oyveloper"
 
+[[params.social]]
+icon = "linkedin"
+name = "Linkedin"
+url = "https://linkedin.com/in/oyvindmonsen"
+
 [[menu.main]]
 identifier = "tags"
 name = "Tags"
