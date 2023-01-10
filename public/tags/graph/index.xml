@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Graph on Øyvind Monsen</title>
+    <link>https://oyvindmonsen.no/tags/graph/</link>
+    <description>Recent content in Graph on Øyvind Monsen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Nov 2021 18:38:21 +0100</lastBuildDate><atom:link href="https://oyvindmonsen.no/tags/graph/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>An introduction to Neo4j</title>
+      <link>https://oyvindmonsen.no/posts/what-is-neo4j/</link>
+      <pubDate>Wed, 10 Nov 2021 18:38:21 +0100</pubDate>
+      
+      <guid>https://oyvindmonsen.no/posts/what-is-neo4j/</guid>
+      <description>What is Neo4j Neo4j is a graph database. Now what is a graph database you ask? Instead of storing data in tables like in traditional relational databases like MySQL, graph databases store data as nodes in a graph. Each datapoint is a node, and relations between nodes are edges in the graph. In a relational database this would be accomplished by having references to other rows, so why should we bother having the data in a graph?</description>
+    </item>
+    
+    <item>
+      <title>3d Force Directed Graph</title>
+      <link>https://oyvindmonsen.no/posts/3d-force-directed-graph/</link>
+      <pubDate>Thu, 10 Jun 2021 19:30:41 +0100</pubDate>
+      
+      <guid>https://oyvindmonsen.no/posts/3d-force-directed-graph/</guid>
+      <description>As a small learning-project I made a 3d-force-directed-graph renderer that lets you explore any graph in 3D. My main motivation for this was to learn three.js.
+Force directed graph Force-directed-graph-algorithms are a set of algorithms that tries to display graphs in an esthetically pleasing way by using concepts from physics. By applying forces between the nodes we can get connected nodes to group together and spread non-connected nodes appart, giving us a clear overview of the graph structure.</description>
+    </item>
+    
+  </channel>
+</rss>

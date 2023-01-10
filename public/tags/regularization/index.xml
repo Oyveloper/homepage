@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Regularization on Øyvind Monsen</title>
+    <link>https://oyvindmonsen.no/tags/regularization/</link>
+    <description>Recent content in Regularization on Øyvind Monsen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Jan 2023 18:38:21 +0100</lastBuildDate><atom:link href="https://oyvindmonsen.no/tags/regularization/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why Does Regularization Work</title>
+      <link>https://oyvindmonsen.no/posts/why-does-regularization-work/</link>
+      <pubDate>Tue, 10 Jan 2023 18:38:21 +0100</pubDate>
+      
+      <guid>https://oyvindmonsen.no/posts/why-does-regularization-work/</guid>
+      <description>In machine learning we often use regularization in order to combat over- and underfitting. Typically one would use either uidge regularization or lasso regularization, and I assume that you are familiar with these. The explanation for why the regularization helps our models generalize better is typically along the lines of &amp;ldquo;it simplifies the model&amp;rdquo;, which for me at least is a bit of an unsatisfying answer. Luckily there is one other way you could view it which shows why this works in many cases for ridge regularization.</description>
+    </item>
+    
+  </channel>
+</rss>

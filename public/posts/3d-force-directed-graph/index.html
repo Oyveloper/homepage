@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>3d Force Directed Graph // Øyvind Monsen</title>
+  <link rel="shortcut icon" href="%20/favicon.ico" />
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.109.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Øyvind Monsen" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="/css/main.min.3c3c186cd62e563ad6e2f00a89dbee656ab912d1d46f856b5605dd0232521e2a.css" />
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="3d Force Directed Graph"/>
+<meta name="twitter:description" content="As a small learning-project I made a 3d-force-directed-graph renderer that lets you explore any graph in 3D. My main motivation for this was to learn three.js.
+Force directed graph Force-directed-graph-algorithms are a set of algorithms that tries to display graphs in an esthetically pleasing way by using concepts from physics. By applying forces between the nodes we can get connected nodes to group together and spread non-connected nodes appart, giving us a clear overview of the graph structure."/>
+
+  <meta property="og:title" content="3d Force Directed Graph" />
+<meta property="og:description" content="As a small learning-project I made a 3d-force-directed-graph renderer that lets you explore any graph in 3D. My main motivation for this was to learn three.js.
+Force directed graph Force-directed-graph-algorithms are a set of algorithms that tries to display graphs in an esthetically pleasing way by using concepts from physics. By applying forces between the nodes we can get connected nodes to group together and spread non-connected nodes appart, giving us a clear overview of the graph structure." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://oyvindmonsen.no/posts/3d-force-directed-graph/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-06-10T19:30:41+01:00" />
+<meta property="article:modified_time" content="2021-06-10T19:30:41+01:00" />
+
+
+  
+
+
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="https://oyvindmonsen.no"><img class="app-header-avatar" src="/profile.jpg" alt="Øyvind Monsen" /></a>
+    <span class="app-header-title">Øyvind Monsen</span>
+    <nav class="app-header-menu">
+      <a class="app-header-menu-item" href="/about/">About</a>
+      |
+      
+      <a class="app-header-menu-item" href="/posts/">Posts</a>
+      |
+      
+      <a class="app-header-menu-item" href="/tags/">Tags</a>
+    </nav>
+    <p>Computer Science student @ NTNU Trondheim with a passion for AI, computer vision and software engineering in general. I do everything from graphics, frontend and backend</p>
+    <div class="app-header-social">
+      
+      <a href="https://github.com/Oyveloper" target="_blank" rel="noreferrer noopener me">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+      </a>
+      
+      <a href="https://linkedin.com/in/oyvindmonsen" target="_blank" rel="noreferrer noopener me">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>Linkedin</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg>
+      </a>
+      
+    </div>
+  </header>
+  <main class="app-container">
+    
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">3d Force Directed Graph</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jun 10, 2021
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          4 min read
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://oyvindmonsen.no/tags/javascript/">Javascript</a>
+              <a class="tag" href="https://oyvindmonsen.no/tags/graph/">Graph</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>As a small learning-project I made a 3d-force-directed-graph renderer that lets you explore any graph in 3D. My main motivation for this was to learn three.js.</p>
+<h2 id="force-directed-graph">Force directed graph</h2>
+<p>Force-directed-graph-algorithms are a set of algorithms that tries to display graphs in an esthetically pleasing way by using concepts from physics. By applying forces between the nodes we can get connected nodes to group together and spread non-connected nodes appart, giving us a clear overview of the graph structure. There are many different such algorithms, with different results and runtimes. This first iteration I went with the clasical and most easy to uderstand approach which includes a spring-like force from edges, and electromagnetic-like repulsion.</p>
+<p>The attraction part is as mentioned modeled after springs, which means that the force that each node feels from each edge is given by F=-kx where x is the distance between the nodes, and k is the spring-constant. If we want the springs to have an ideal length we can introduce it into the formula as follows: F=-kx/l. While this approach seems straight forward I got better results when using F=-k log(x/l) for some reason.</p>
+<p>For repulsion the forces are similar to the repulsion of two electricly charged particles with same charge. Therefore each node feels a force from all other nodes given by F = k/x², where x is the distance between the nodes.</p>
+<p>For all nodes we calculate the force impact from all other nodes, and then apply the force. This is done each animation frame to calculate a small change.</p>
+<p>The resulting calcuation might give results like this:</p>
+<h2 id="optimization">Optimization</h2>
+<p>These calculations can become large, especially for larger graphs. One way to optimize the runtime of each force calculation pass is to limit the nodes that we calculate the force for. The repulsion force decreases with the square of the distance, so distant nodes won&rsquo;t really impact each other that much. Therefore we can limit the calculation only to nodes that are within a certain distance. We do, however, not want to apply this limitation for the spring force, since we want connected clusters to collect, even though their starting point might be far appart.</p>
+<p>Sometimes the entire graph might get a net sum force in one direction making it drift out of view, or some nodes might get to far away from the rest. To combat this we can introduce a new force: gravity. This is quite simple, each node has some attraction to the center of the scene, proportional to the distance to the center. Since the center is at (0, 0, 0) we can just apply the force as the inverse of the position vector for each node.</p>
+<p>Lastly we also want to limit the force calculation whenever the graph comes close to some equilibrium. The equilibrium comes when the repulsion and attraction match eachother, but we can speed things up by doing aggressive calculations initially, and lower the temperature with time. To do this we multiply each force vector by some constant over the log of time.</p>
+<h2 id="the-code">The code</h2>
+<p>Under you see the complete code used to calculate the force for nodes at each timestep. Then it is just a matter of calling this function each animation loop to update all the node-positions. You can also see the complete code for all the rendering over on Github.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Vector3</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;three&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Force per distance
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">REPULSION_FORCE</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.2</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">EDGE_FORCE</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.4</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">SIGMA</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.08</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">GRAVITY</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0002</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">forceVectors</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Vector3</span>[] <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">calculateForces</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">nodes</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">Mesh</span>[],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">edges</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span>[][],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">t</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span>
+</span></span><span style="display:flex;"><span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">forceVectors</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">nodes</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">forceVector</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vector3</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">j</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">nodes</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">j</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">node</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">nodes</span>[<span style="color:#a6e22e">i</span>];
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">otherNode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">nodes</span>[<span style="color:#a6e22e">j</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">otherNodePosition</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vector3</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">otherNode</span>.<span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">x</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">otherNode</span>.<span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">y</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">otherNode</span>.<span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">z</span>
+</span></span><span style="display:flex;"><span>      );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">distanceVector</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vector3</span>()
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">copy</span>(<span style="color:#a6e22e">otherNodePosition</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">sub</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">position</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">edges</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] <span style="color:#f92672">===</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Attraction
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">attraction</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">EDGE_FORCE</span> <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">distanceVector</span>.<span style="color:#a6e22e">length</span>() <span style="color:#f92672">/</span> <span style="color:#ae81ff">0.5</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">attractionVector</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vector3</span>()
+</span></span><span style="display:flex;"><span>          .<span style="color:#a6e22e">copy</span>(<span style="color:#a6e22e">distanceVector</span>)
+</span></span><span style="display:flex;"><span>          .<span style="color:#a6e22e">multiplyScalar</span>(<span style="color:#a6e22e">attraction</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">forceVector</span>.<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">attractionVector</span>);
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// repulsion
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">distanceVector</span>.<span style="color:#a6e22e">length</span>() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">repulsion</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">REPULSION_FORCE</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">distanceVector</span>.<span style="color:#a6e22e">length</span>() <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">repulsionVector</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vector3</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">copy</span>(<span style="color:#a6e22e">distanceVector</span>)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">multiplyScalar</span>(<span style="color:#a6e22e">repulsion</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">forceVector</span>.<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">repulsionVector</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// gravitation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">gravityVector</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vector3</span>()
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">copy</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">position</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">multiplyScalar</span>(<span style="color:#f92672">-</span><span style="color:#a6e22e">GRAVITY</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">forceVector</span>.<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">gravityVector</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">forceVectors</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">forceVector</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">nodes</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">nodes</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">add</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">forceVectors</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">multiplyScalar</span>(<span style="color:#a6e22e">SIGMA</span> <span style="color:#f92672">/</span> Math.<span style="color:#a6e22e">max</span>(<span style="color:#ae81ff">1</span>, Math.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">t</span>)))
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+  </main>
+</body>
+
+</html>

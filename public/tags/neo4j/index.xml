@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Neo4J on Øyvind Monsen</title>
+    <link>https://oyvindmonsen.no/tags/neo4j/</link>
+    <description>Recent content in Neo4J on Øyvind Monsen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Nov 2021 18:38:21 +0100</lastBuildDate><atom:link href="https://oyvindmonsen.no/tags/neo4j/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>An introduction to Neo4j</title>
+      <link>https://oyvindmonsen.no/posts/what-is-neo4j/</link>
+      <pubDate>Wed, 10 Nov 2021 18:38:21 +0100</pubDate>
+      
+      <guid>https://oyvindmonsen.no/posts/what-is-neo4j/</guid>
+      <description>What is Neo4j Neo4j is a graph database. Now what is a graph database you ask? Instead of storing data in tables like in traditional relational databases like MySQL, graph databases store data as nodes in a graph. Each datapoint is a node, and relations between nodes are edges in the graph. In a relational database this would be accomplished by having references to other rows, so why should we bother having the data in a graph?</description>
+    </item>
+    
+  </channel>
+</rss>

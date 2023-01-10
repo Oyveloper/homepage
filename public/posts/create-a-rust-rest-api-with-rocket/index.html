@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>Create a Rust Rest Api With Rocket // Øyvind Monsen</title>
+  <link rel="shortcut icon" href="%20/favicon.ico" />
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.109.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Øyvind Monsen" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="/css/main.min.3c3c186cd62e563ad6e2f00a89dbee656ab912d1d46f856b5605dd0232521e2a.css" />
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Create a Rust Rest Api With Rocket"/>
+<meta name="twitter:description" content="This article will be going over how to make a very simple REST API with Rust and the Rocket library. Since Rust is more of a low level language you would seldom use it for such a simple example, but it fits the purpouse of focusing on just the web part of this.
+Project setup First of all we need to setup a project with cargo:
+cargo new simple-rest --bin cd simple-rest Now we need some dpendencies, namely Rocket."/>
+
+  <meta property="og:title" content="Create a Rust Rest Api With Rocket" />
+<meta property="og:description" content="This article will be going over how to make a very simple REST API with Rust and the Rocket library. Since Rust is more of a low level language you would seldom use it for such a simple example, but it fits the purpouse of focusing on just the web part of this.
+Project setup First of all we need to setup a project with cargo:
+cargo new simple-rest --bin cd simple-rest Now we need some dpendencies, namely Rocket." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://oyvindmonsen.no/posts/create-a-rust-rest-api-with-rocket/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-10T19:25:34+01:00" />
+<meta property="article:modified_time" content="2023-01-10T19:25:34+01:00" />
+
+
+  
+
+
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="https://oyvindmonsen.no"><img class="app-header-avatar" src="/profile.jpg" alt="Øyvind Monsen" /></a>
+    <span class="app-header-title">Øyvind Monsen</span>
+    <nav class="app-header-menu">
+      <a class="app-header-menu-item" href="/about/">About</a>
+      |
+      
+      <a class="app-header-menu-item" href="/posts/">Posts</a>
+      |
+      
+      <a class="app-header-menu-item" href="/tags/">Tags</a>
+    </nav>
+    <p>Computer Science student @ NTNU Trondheim with a passion for AI, computer vision and software engineering in general. I do everything from graphics, frontend and backend</p>
+    <div class="app-header-social">
+      
+      <a href="https://github.com/Oyveloper" target="_blank" rel="noreferrer noopener me">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+      </a>
+      
+      <a href="https://linkedin.com/in/oyvindmonsen" target="_blank" rel="noreferrer noopener me">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>Linkedin</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg>
+      </a>
+      
+    </div>
+  </header>
+  <main class="app-container">
+    
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Create a Rust Rest Api With Rocket</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 10, 2023
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          4 min read
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://oyvindmonsen.no/tags/rust/">Rust</a>
+              <a class="tag" href="https://oyvindmonsen.no/tags/rocket/">Rocket</a>
+              <a class="tag" href="https://oyvindmonsen.no/tags/rest/">REST</a>
+              <a class="tag" href="https://oyvindmonsen.no/tags/api/">API</a>
+              <a class="tag" href="https://oyvindmonsen.no/tags/guide/">Guide</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>This article will be going over how to make a very simple REST API with Rust and the Rocket library. Since Rust is more of a low level language you would seldom use it for such a simple example, but it fits the purpouse of focusing on just the web part of this.</p>
+<h2 id="project-setup">Project setup</h2>
+<p>First of all we need to setup a project with cargo:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cargo new simple-rest --bin
+</span></span><span style="display:flex;"><span>cd simple-rest
+</span></span></code></pre></div><p>Now we need some dpendencies, namely Rocket. Open up your Cargo.toml file and add the following dependency:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">dependencies</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rocket</span> = { <span style="color:#a6e22e">version</span> = <span style="color:#e6db74">&#34;0.5.0-rc.1&#34;</span>, <span style="color:#a6e22e">features</span> = [<span style="color:#e6db74">&#34;json&#34;</span>]}
+</span></span></code></pre></div><p>Note that we add the json feature. This is important for us to be able to use the automatic JSON serialization later on, and is not easy to figure out from the docs.</p>
+<p>Hello world
+Next up we&rsquo;ll create our first &ldquo;Hello World&rdquo; endpoint. In the main.rs file add the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rs" data-lang="rs"><span style="display:flex;"><span><span style="color:#75715e">#[macro_use]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">crate</span> rocket;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#[rocket::get(</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#75715e">)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">index</span>() -&gt; <span style="color:#66d9ef">&amp;</span><span style="color:#f92672">&#39;</span>static <span style="color:#66d9ef">str</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Hello, world!&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#[rocket::main]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>  rocket::build()
+</span></span><span style="display:flex;"><span>    .mount(<span style="color:#e6db74">&#34;/&#34;</span>, routes<span style="color:#f92672">!</span>[index])
+</span></span><span style="display:flex;"><span>    .launch()
+</span></span><span style="display:flex;"><span>    .<span style="color:#66d9ef">await</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Let&rsquo;s go over what we just wrote. First we define a GET-endpoint with #[rocket::get(&quot;/&quot;)]. This is the way we tell rocket to point the &ldquo;/&rdquo; endpoint to whatever function we put below. Our function simply returns the string &ldquo;Hello world&rdquo;, but we can return basically any type we want. We can also the same for POST, UPDATE and all the other HTTP methods.</p>
+<p>After that we define the starting point for rocket with the #[rocket::main]. In the main method we build rocket and register our routes.</p>
+<p>JSON
+In a real REST API you would probably want to return data as JSON instead of just string messages. Luckily, Rocket makes this easy for us with the JSON return type. Every struct that implements Serialize from serde can be fed into JSON and automatically parsed. Lets add a simple user model and return it in an endpoint.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rs" data-lang="rs"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> rocket::serde::Serialize;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#[derive(Serialize)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">pub</span> name: String,
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">pub</span> user_id: String,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Perfect! Now that we have this very simple model we can use it to return some more realistic data on our API.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rs" data-lang="rs"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> rocket::serde::json::Json;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#[rocket::get(</span><span style="color:#e6db74">&#34;/users&#34;</span><span style="color:#75715e">)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">fn users() -&gt; Json&lt;Vec&lt;User&gt;&gt; {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  // This would be replaced by your logic
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  // for retrieving users
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  let uers = vec![
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    User {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">name: String::from(</span><span style="color:#e6db74">&#34;Some Name&#34;</span><span style="color:#75715e">),
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        user_id: String::from(</span><span style="color:#e6db74">&#34;12234&#34;</span><span style="color:#75715e">),
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  ];
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  // This is where the JSON magic happens
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  Json(users)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">}
+</span></span></span></code></pre></div><p>The most important things to note above is the Json&lt;Vec<!-- raw HTML omitted -->&gt; return type, and the return of Json(users). The Json method will serialize the object into JSON and return it as a Responder which all Rocket endpoints must implement. Responer includes fields as status and content, and is used to represent a response from the API. Luckily the Json Responder is ready to use for us. This is the reason we needed the features = [&ldquo;json&rdquo;] in our dependency earlier.</p>
+<p>We also need to add this endpoint to our app. To do this we add it in the main method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rs" data-lang="rs"><span style="display:flex;"><span><span style="color:#75715e">#[rocket::main]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>  rocket::build()
+</span></span><span style="display:flex;"><span>    .mount(<span style="color:#e6db74">&#34;/&#34;</span>, routes<span style="color:#f92672">!</span>[index, users])
+</span></span><span style="display:flex;"><span>    .attach(cors)
+</span></span><span style="display:flex;"><span>    .launch()
+</span></span><span style="display:flex;"><span>    .<span style="color:#66d9ef">await</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="cors">CORS</h2>
+<p>You probably want to use your API somewhere, and my guess is that you would like to do that from a Javascript application running localy during development. To do this our endpoint must send a CORS (Cross Origin Resource Sharing) header to tell our browser that it is ok for our website to fetch this api, even though they will be on different domains (typically different ports on your local machine during development).</p>
+<p>The simplest way to achieve this is with rocket_cors. First we add the dependency to Cargo.toml</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">dependencies</span>]
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#a6e22e">Existing</span> <span style="color:#a6e22e">dependencies</span> <span style="color:#960050;background-color:#1e0010">…</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rocket_cors</span> = { <span style="color:#a6e22e">git</span> = <span style="color:#e6db74">&#34;https://github.com/lawliet89/rocket_cors&#34;</span>, <span style="color:#a6e22e">branch</span> = <span style="color:#e6db74">&#34;master&#34;</span> }
+</span></span></code></pre></div><p>And now we modify our endpoint function to use the cors library:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rs" data-lang="rs"><span style="display:flex;"><span><span style="color:#75715e">#[rocket::main]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> allowed_origins <span style="color:#f92672">=</span> AllowedOrigins::some_exact(<span style="color:#f92672">&amp;</span>[<span style="color:#e6db74">&#34;http://localhost:3000&#34;</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// You can also deserialize this
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> cors <span style="color:#f92672">=</span> rocket_cors::CorsOptions {
+</span></span><span style="display:flex;"><span>    allowed_origins,
+</span></span><span style="display:flex;"><span>      allowed_methods: <span style="color:#a6e22e">AllowedMethods</span>::default(),
+</span></span><span style="display:flex;"><span>      allowed_headers: <span style="color:#a6e22e">AllowedHeaders</span>::some(<span style="color:#f92672">&amp;</span>[<span style="color:#e6db74">&#34;Authorization&#34;</span>, <span style="color:#e6db74">&#34;Accept&#34;</span>]),
+</span></span><span style="display:flex;"><span>      allow_credentials: <span style="color:#a6e22e">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">..</span>Default::default()
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  .to_cors().expect(<span style="color:#e6db74">&#34;Failed to create CORS&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  rocket::build()
+</span></span><span style="display:flex;"><span>    .mount(<span style="color:#e6db74">&#34;/&#34;</span>, routes<span style="color:#f92672">!</span>[index, users])
+</span></span><span style="display:flex;"><span>    .attach(cors)
+</span></span><span style="display:flex;"><span>    .launch()
+</span></span><span style="display:flex;"><span>    .<span style="color:#66d9ef">await</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>That&rsquo;s it! You now have a running REST API that serves a custom data model as JSON that can be accessed from a javascript application!</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+  </main>
+</body>
+
+</html>

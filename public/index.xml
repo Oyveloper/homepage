@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Øyvind Monsen</title>
+    <link>https://oyvindmonsen.no/</link>
+    <description>Recent content on Øyvind Monsen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Jan 2023 19:25:34 +0100</lastBuildDate><atom:link href="https://oyvindmonsen.no/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create a Rust Rest Api With Rocket</title>
+      <link>https://oyvindmonsen.no/posts/create-a-rust-rest-api-with-rocket/</link>
+      <pubDate>Tue, 10 Jan 2023 19:25:34 +0100</pubDate>
+      
+      <guid>https://oyvindmonsen.no/posts/create-a-rust-rest-api-with-rocket/</guid>
+      <description>This article will be going over how to make a very simple REST API with Rust and the Rocket library. Since Rust is more of a low level language you would seldom use it for such a simple example, but it fits the purpouse of focusing on just the web part of this.
+Project setup First of all we need to setup a project with cargo:
+cargo new simple-rest --bin cd simple-rest Now we need some dpendencies, namely Rocket.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://oyvindmonsen.no/about/</link>
+      <pubDate>Tue, 10 Jan 2023 19:14:37 +0100</pubDate>
+      
+      <guid>https://oyvindmonsen.no/about/</guid>
+      <description>I am a Computer Science student @ NTNU Trondheim. To see some of my projects check out my Github. I also occationally write some articles about random things I find interesting and some of my projects.
+My top interests at the moment are:
+Computer vision AI Computer graphics Infrastructure / Cloud I have some experience working:
+Biblioteksystemer Kantega Junior Consulting Disruptive Technologies This summer I will intern at Palantir.</description>
+    </item>
+    
+    <item>
+      <title>Why Does Regularization Work</title>
+      <link>https://oyvindmonsen.no/posts/why-does-regularization-work/</link>
+      <pubDate>Tue, 10 Jan 2023 18:38:21 +0100</pubDate>
+      
+      <guid>https://oyvindmonsen.no/posts/why-does-regularization-work/</guid>
+      <description>In machine learning we often use regularization in order to combat over- and underfitting. Typically one would use either uidge regularization or lasso regularization, and I assume that you are familiar with these. The explanation for why the regularization helps our models generalize better is typically along the lines of &amp;ldquo;it simplifies the model&amp;rdquo;, which for me at least is a bit of an unsatisfying answer. Luckily there is one other way you could view it which shows why this works in many cases for ridge regularization.</description>
+    </item>
+    
+    <item>
+      <title>An introduction to Neo4j</title>
+      <link>https://oyvindmonsen.no/posts/what-is-neo4j/</link>
+      <pubDate>Wed, 10 Nov 2021 18:38:21 +0100</pubDate>
+      
+      <guid>https://oyvindmonsen.no/posts/what-is-neo4j/</guid>
+      <description>What is Neo4j Neo4j is a graph database. Now what is a graph database you ask? Instead of storing data in tables like in traditional relational databases like MySQL, graph databases store data as nodes in a graph. Each datapoint is a node, and relations between nodes are edges in the graph. In a relational database this would be accomplished by having references to other rows, so why should we bother having the data in a graph?</description>
+    </item>
+    
+    <item>
+      <title>3d Force Directed Graph</title>
+      <link>https://oyvindmonsen.no/posts/3d-force-directed-graph/</link>
+      <pubDate>Thu, 10 Jun 2021 19:30:41 +0100</pubDate>
+      
+      <guid>https://oyvindmonsen.no/posts/3d-force-directed-graph/</guid>
+      <description>As a small learning-project I made a 3d-force-directed-graph renderer that lets you explore any graph in 3D. My main motivation for this was to learn three.js.
+Force directed graph Force-directed-graph-algorithms are a set of algorithms that tries to display graphs in an esthetically pleasing way by using concepts from physics. By applying forces between the nodes we can get connected nodes to group together and spread non-connected nodes appart, giving us a clear overview of the graph structure.</description>
+    </item>
+    
+  </channel>
+</rss>

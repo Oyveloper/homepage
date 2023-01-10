@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>REST on Øyvind Monsen</title>
+    <link>https://oyvindmonsen.no/tags/rest/</link>
+    <description>Recent content in REST on Øyvind Monsen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Jan 2023 19:25:34 +0100</lastBuildDate><atom:link href="https://oyvindmonsen.no/tags/rest/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create a Rust Rest Api With Rocket</title>
+      <link>https://oyvindmonsen.no/posts/create-a-rust-rest-api-with-rocket/</link>
+      <pubDate>Tue, 10 Jan 2023 19:25:34 +0100</pubDate>
+      
+      <guid>https://oyvindmonsen.no/posts/create-a-rust-rest-api-with-rocket/</guid>
+      <description>This article will be going over how to make a very simple REST API with Rust and the Rocket library. Since Rust is more of a low level language you would seldom use it for such a simple example, but it fits the purpouse of focusing on just the web part of this.
+Project setup First of all we need to setup a project with cargo:
+cargo new simple-rest --bin cd simple-rest Now we need some dpendencies, namely Rocket.</description>
+    </item>
+    
+  </channel>
+</rss>

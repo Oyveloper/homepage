@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on Øyvind Monsen</title>
+    <link>https://oyvindmonsen.no/tags/javascript/</link>
+    <description>Recent content in Javascript on Øyvind Monsen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 10 Jun 2021 19:30:41 +0100</lastBuildDate><atom:link href="https://oyvindmonsen.no/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>3d Force Directed Graph</title>
+      <link>https://oyvindmonsen.no/posts/3d-force-directed-graph/</link>
+      <pubDate>Thu, 10 Jun 2021 19:30:41 +0100</pubDate>
+      
+      <guid>https://oyvindmonsen.no/posts/3d-force-directed-graph/</guid>
+      <description>As a small learning-project I made a 3d-force-directed-graph renderer that lets you explore any graph in 3D. My main motivation for this was to learn three.js.
+Force directed graph Force-directed-graph-algorithms are a set of algorithms that tries to display graphs in an esthetically pleasing way by using concepts from physics. By applying forces between the nodes we can get connected nodes to group together and spread non-connected nodes appart, giving us a clear overview of the graph structure.</description>
+    </item>
+    
+  </channel>
+</rss>

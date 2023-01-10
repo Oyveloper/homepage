@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>An introduction to Neo4j // Øyvind Monsen</title>
+  <link rel="shortcut icon" href="%20/favicon.ico" />
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.109.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Øyvind Monsen" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="/css/main.min.3c3c186cd62e563ad6e2f00a89dbee656ab912d1d46f856b5605dd0232521e2a.css" />
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="An introduction to Neo4j"/>
+<meta name="twitter:description" content="What is Neo4j Neo4j is a graph database. Now what is a graph database you ask? Instead of storing data in tables like in traditional relational databases like MySQL, graph databases store data as nodes in a graph. Each datapoint is a node, and relations between nodes are edges in the graph. In a relational database this would be accomplished by having references to other rows, so why should we bother having the data in a graph?"/>
+
+  <meta property="og:title" content="An introduction to Neo4j" />
+<meta property="og:description" content="What is Neo4j Neo4j is a graph database. Now what is a graph database you ask? Instead of storing data in tables like in traditional relational databases like MySQL, graph databases store data as nodes in a graph. Each datapoint is a node, and relations between nodes are edges in the graph. In a relational database this would be accomplished by having references to other rows, so why should we bother having the data in a graph?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://oyvindmonsen.no/posts/what-is-neo4j/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-10T18:38:21+01:00" />
+<meta property="article:modified_time" content="2021-11-10T18:38:21+01:00" />
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+  integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous" />
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+  integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+  integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+  onload="renderMathInElement(document.body);"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "$", right: "$", display: false},
+      ],
+    });
+  });
+</script>
+
+
+
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="https://oyvindmonsen.no"><img class="app-header-avatar" src="/profile.jpg" alt="Øyvind Monsen" /></a>
+    <span class="app-header-title">Øyvind Monsen</span>
+    <nav class="app-header-menu">
+      <a class="app-header-menu-item" href="/about/">About</a>
+      |
+      
+      <a class="app-header-menu-item" href="/posts/">Posts</a>
+      |
+      
+      <a class="app-header-menu-item" href="/tags/">Tags</a>
+    </nav>
+    <p>Computer Science student @ NTNU Trondheim with a passion for AI, computer vision and software engineering in general. I do everything from graphics, frontend and backend</p>
+    <div class="app-header-social">
+      
+      <a href="https://github.com/Oyveloper" target="_blank" rel="noreferrer noopener me">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+      </a>
+      
+      <a href="https://linkedin.com/in/oyvindmonsen" target="_blank" rel="noreferrer noopener me">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>Linkedin</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg>
+      </a>
+      
+    </div>
+  </header>
+  <main class="app-container">
+    
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">An introduction to Neo4j</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Nov 10, 2021
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://oyvindmonsen.no/tags/neo4j/">Neo4J</a>
+              <a class="tag" href="https://oyvindmonsen.no/tags/database/">Database</a>
+              <a class="tag" href="https://oyvindmonsen.no/tags/graph/">Graph</a>
+              <a class="tag" href="https://oyvindmonsen.no/tags/graph-database/">Graph-database</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p><img src="/neo4j.png" alt=""></p>
+<h2 id="what-is-neo4j">What is Neo4j</h2>
+<p>Neo4j is a graph database.
+Now what is a graph database you ask? Instead of storing data in tables like in traditional relational databases like MySQL, graph databases store data as nodes in a graph. Each datapoint is a node, and relations between nodes are edges in the graph. In a relational database this would be accomplished by having references to other rows, so why should we bother having the data in a graph?</p>
+<h2 id="motivation">Motivation</h2>
+<p>Even though it is simple to model relations in traditional databases more complex networks is a bit harder. Say you want to model a social graph and want to find your friends&rsquo; friends. In a table you would first have to get all your friends, and then join that result with all their friends. In a graph database like Neo4j however, this can be done much easier since querying transitive relations is quit natural in query languages like cypher (which Neo4j uses).</p>
+<pre tabindex="0"><code class="language-cypher" data-lang="cypher">MATCH (:Person)-[:Friend*..2]-&gt;(p:Person)
+RETURN p
+</code></pre>
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+  </main>
+</body>
+
+</html>
