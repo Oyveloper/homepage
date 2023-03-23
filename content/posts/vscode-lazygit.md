@@ -1,6 +1,6 @@
 ---
 title: "How to run lazygit in VSCode"
-date: 2023-03-23T19:25:34+01:00
+date: 2023-03-23T13:40:59+01:00
 draft: false
 tags: ["VSCode", "Neovim", "Lazygit", "Editor", "Productivity"]
 ---

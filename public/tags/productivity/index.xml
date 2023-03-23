@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Productivity on Øyvind Monsen</title>
+    <link>https://oyvindmonsen.no/tags/productivity/</link>
+    <description>Recent content in Productivity on Øyvind Monsen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Mar 2023 13:40:59 +0100</lastBuildDate><atom:link href="https://oyvindmonsen.no/tags/productivity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to run lazygit in VSCode</title>
+      <link>https://oyvindmonsen.no/posts/vscode-lazygit/</link>
+      <pubDate>Thu, 23 Mar 2023 13:40:59 +0100</pubDate>
+      
+      <guid>https://oyvindmonsen.no/posts/vscode-lazygit/</guid>
+      <description>For a long time I have been using Neovim as my main editor, but sometimes I do find myself in situations where VSCode is more convenient, for example when working with notebooks. In Neovim I have been using Lazygit combined with Toggleterm in order to quickly access a popup lazygit window with a quick shortcut. For VSCode there is no plugin to do this AFIK (please let me know if I am wrong).</description>
+    </item>
+    
+  </channel>
+</rss>

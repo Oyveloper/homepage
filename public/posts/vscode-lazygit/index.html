@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>How to run lazygit in VSCode // Øyvind Monsen</title>
+  <link rel="shortcut icon" href="%20/favicon.ico" />
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.109.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Øyvind Monsen" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="/css/main.min.3c3c186cd62e563ad6e2f00a89dbee656ab912d1d46f856b5605dd0232521e2a.css" />
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to run lazygit in VSCode"/>
+<meta name="twitter:description" content="For a long time I have been using Neovim as my main editor, but sometimes I do find myself in situations where VSCode is more convenient, for example when working with notebooks. In Neovim I have been using Lazygit combined with Toggleterm in order to quickly access a popup lazygit window with a quick shortcut. For VSCode there is no plugin to do this AFIK (please let me know if I am wrong)."/>
+
+  <meta property="og:title" content="How to run lazygit in VSCode" />
+<meta property="og:description" content="For a long time I have been using Neovim as my main editor, but sometimes I do find myself in situations where VSCode is more convenient, for example when working with notebooks. In Neovim I have been using Lazygit combined with Toggleterm in order to quickly access a popup lazygit window with a quick shortcut. For VSCode there is no plugin to do this AFIK (please let me know if I am wrong)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://oyvindmonsen.no/posts/vscode-lazygit/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-23T13:40:59+01:00" />
+<meta property="article:modified_time" content="2023-03-23T13:40:59+01:00" />
+
+
+  
+
+
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="https://oyvindmonsen.no"><img class="app-header-avatar" src="/profile.jpg" alt="Øyvind Monsen" /></a>
+    <span class="app-header-title">Øyvind Monsen</span>
+    <nav class="app-header-menu">
+      <a class="app-header-menu-item" href="/about/">About</a>
+      |
+      
+      <a class="app-header-menu-item" href="/posts/">Posts</a>
+      |
+      
+      <a class="app-header-menu-item" href="/tags/">Tags</a>
+    </nav>
+    <p>Computer Science student @ NTNU Trondheim with a passion for AI, computer vision and software engineering in general. I do everything from graphics, frontend and backend</p>
+    <div class="app-header-social">
+      
+      <a href="https://github.com/Oyveloper" target="_blank" rel="noreferrer noopener me">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+      </a>
+      
+      <a href="https://linkedin.com/in/oyvindmonsen" target="_blank" rel="noreferrer noopener me">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>Linkedin</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg>
+      </a>
+      
+    </div>
+  </header>
+  <main class="app-container">
+    
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">How to run lazygit in VSCode</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Mar 23, 2023
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://oyvindmonsen.no/tags/vscode/">VSCode</a>
+              <a class="tag" href="https://oyvindmonsen.no/tags/neovim/">Neovim</a>
+              <a class="tag" href="https://oyvindmonsen.no/tags/lazygit/">Lazygit</a>
+              <a class="tag" href="https://oyvindmonsen.no/tags/editor/">Editor</a>
+              <a class="tag" href="https://oyvindmonsen.no/tags/productivity/">Productivity</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>For a long time I have been using Neovim as my main editor, but sometimes I do find myself in situations
+where VSCode is more convenient, for example when working with notebooks.
+In Neovim I have been using Lazygit combined with Toggleterm in order to quickly access a popup lazygit
+window with a quick shortcut. For VSCode there is no plugin to do this AFIK (please let me know if I am wrong).
+However I have been able to find a nice workaround using VSCode Tasks.</p>
+<h2 id="setting-up-the-task">Setting up the task</h2>
+<p>First of all we must configure our tasks. In VSCode, open the command pallette, and select &ldquo;Open user tasks&rdquo;.
+This will open a json file defining your tasks. My tasks file is then set up as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// See https://go.microsoft.com/fwlink/?LinkId=733558
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// for the documentation about the tasks.json format
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;2.0.0&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;tasks&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;label&#34;</span>: <span style="color:#e6db74">&#34;maximize_terminal&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;${command:workbench.action.toggleMaximizedPanel}&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;label&#34;</span>: <span style="color:#e6db74">&#34;lazygit&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;shell&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;lazygit&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;presentation&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;echo&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;reveal&#34;</span>: <span style="color:#e6db74">&#34;always&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;focus&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;panel&#34;</span>: <span style="color:#e6db74">&#34;dedicated&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;clear&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;close&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;dependsOn&#34;</span>: <span style="color:#e6db74">&#34;maximize_terminal&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;label&#34;</span>: <span style="color:#e6db74">&#34;close_lazygit&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;${command:workbench.action.toggleMaximizedPanel}&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;dependsOn&#34;</span>: <span style="color:#e6db74">&#34;lazygit&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>You can see there are three tasks defined:</p>
+<ul>
+<li>maximize_terminal – maximizes the terminal view so we can focus on lazygit</li>
+<li>lazygit – actually runs lazygit</li>
+<li>close_lazygit – minimize our terminal after we have run the command</li>
+</ul>
+<p>Somewhat counterintuitively it is the &ldquo;close_lazygit&rdquo; task that we must run, as we rely on the dependsOn property
+to make the chainning of commands work. Now you can bind any shortcut to run this. For me I have defined it to
+be the same as my neovim shortcut, and since I use the neovim plugin for VSCode, I do it in my neovim configure</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">local</span> keymap <span style="color:#f92672">=</span> vim.api.nvim_set_keymap
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">local</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">remap</span>(mode, from, to)
+</span></span><span style="display:flex;"><span>  keymap(mode, from, to, opts)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>remap(<span style="color:#e6db74">&#34;n&#34;</span>, <span style="color:#e6db74">&#34;&lt;leader&gt;gg&#34;</span>, <span style="color:#e6db74">&#34;&lt;Cmd&gt;call VSCodeNotify(&#39;workbench.action.tasks.runTask&#39;, &#39;close_lazygit&#39;)&lt;CR&gt;&#34;</span>)
+</span></span></code></pre></div><p>I hope you found this small guide helpful!</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+  </main>
+</body>
+
+</html>

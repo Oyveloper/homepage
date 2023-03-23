@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://oyvindmonsen.no/tags/editor/</loc>
+    <lastmod>2023-03-23T13:40:59+01:00</lastmod>
+  </url><url>
+    <loc>https://oyvindmonsen.no/posts/vscode-lazygit/</loc>
+    <lastmod>2023-03-23T13:40:59+01:00</lastmod>
+  </url><url>
+    <loc>https://oyvindmonsen.no/tags/lazygit/</loc>
+    <lastmod>2023-03-23T13:40:59+01:00</lastmod>
+  </url><url>
+    <loc>https://oyvindmonsen.no/tags/neovim/</loc>
+    <lastmod>2023-03-23T13:40:59+01:00</lastmod>
+  </url><url>
+    <loc>https://oyvindmonsen.no/</loc>
+    <lastmod>2023-03-23T13:40:59+01:00</lastmod>
+  </url><url>
+    <loc>https://oyvindmonsen.no/posts/</loc>
+    <lastmod>2023-03-23T13:40:59+01:00</lastmod>
+  </url><url>
+    <loc>https://oyvindmonsen.no/tags/productivity/</loc>
+    <lastmod>2023-03-23T13:40:59+01:00</lastmod>
+  </url><url>
+    <loc>https://oyvindmonsen.no/tags/</loc>
+    <lastmod>2023-03-23T13:40:59+01:00</lastmod>
+  </url><url>
+    <loc>https://oyvindmonsen.no/tags/vscode/</loc>
+    <lastmod>2023-03-23T13:40:59+01:00</lastmod>
+  </url><url>
     <loc>https://oyvindmonsen.no/tags/api/</loc>
     <lastmod>2023-01-10T19:25:34+01:00</lastmod>
   </url><url>
@@ -11,12 +38,6 @@
     <loc>https://oyvindmonsen.no/tags/guide/</loc>
     <lastmod>2023-01-10T19:25:34+01:00</lastmod>
   </url><url>
-    <loc>https://oyvindmonsen.no/</loc>
-    <lastmod>2023-01-10T19:25:34+01:00</lastmod>
-  </url><url>
-    <loc>https://oyvindmonsen.no/posts/</loc>
-    <lastmod>2023-01-10T19:25:34+01:00</lastmod>
-  </url><url>
     <loc>https://oyvindmonsen.no/tags/rest/</loc>
     <lastmod>2023-01-10T19:25:34+01:00</lastmod>
   </url><url>
@@ -24,9 +45,6 @@
     <lastmod>2023-01-10T19:25:34+01:00</lastmod>
   </url><url>
     <loc>https://oyvindmonsen.no/tags/rust/</loc>
-    <lastmod>2023-01-10T19:25:34+01:00</lastmod>
-  </url><url>
-    <loc>https://oyvindmonsen.no/tags/</loc>
     <lastmod>2023-01-10T19:25:34+01:00</lastmod>
   </url><url>
     <loc>https://oyvindmonsen.no/about/</loc>
